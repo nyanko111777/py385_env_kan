@@ -103,3 +103,6 @@ jupyter kernelspec list
 
 ## dotnet
 
+1. dotnet.7zを解凍して、pythonの中に配置
+1. setenv.batのpathにdotnet interactiveのexeのパスを通す
+1. dotnet interactiveのコマンドでkernelを追加
