@@ -35,6 +35,29 @@ python.exe -m pip install xmltodict
 python.exe -m pip uninstall jedi
 ```
 
+### JupyterLab extention
+
+1. outside, do a jupyter lab install of all extensions of interest
+1. copy $PREFIX/share/jupyter/lab/static from the outside machine onto a shared/thumb drive
+1. inside, overwrite/create that same folder
+
+```
+
+python.exe -m pip pip install jupyterlab-language-pack-ja-JP
+
+jupyter labextension install @jupyterlab/toc
+
+jupyter labextension install @jupyterlab/git
+python.exe -m pip install jupyterlab-git
+jupyter serverextension enable --py jupyterlab_git
+
+python.exe -m pip install ipywidgets
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter nbextension enable --py --sys-prefix widgetsnbextension
+
+```
+
+
 ### Tkinter
 [参考](https://tanakatarou.tech/345/)
 
