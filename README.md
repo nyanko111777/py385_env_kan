@@ -1,11 +1,12 @@
 # python385_env
 
 [USBメモリがあればどこでも使えるPython + JupyterLab環境の作り方](https://gammasoft.jp/blog/python-and-jupyterlab-in-usb-stick/)をもとにpython3.8.5の可搬環境を作りました
-Windows embeddable package を使用 
+Windows embeddable package を使用
 
 ## python環境ずくり
 
 ### 初期設定
+
 1. 名前を変更 ：　短くしておく、setenv.batと名前を合わせる
 1. python38._pthの#import siteの先頭の#を消す
 1. get-pip.pyを`https://bootstrap.pypa.io/get-pip.py`からダウンロードして、pythonフォルダに入れる
@@ -13,10 +14,31 @@ Windows embeddable package を使用
 1. python38._pth の名前を変えて無効化する（パスの関係で読み込めない）
    例）python38._pth　→　python38._pth_muko
 
-
 ### ライブラリ
+
 ```
 python.exe -m pip install jupyterlab
+python.exe -m pip install jupyterlab-language-pack-ja-JP
+python.exe -m pip install jupytext
+python.exe -m pip install jupyterlab-git
+python.exe -m pip install ipywidgets
+python.exe -m pip install qgrid
+python.exe -m pip install jupyter-contrib-nbextensions
+```
+
+```
+\000_work\py385_env_kan\python\python-3.8.5\lib\site-packages\qgrid\grid.py:524
+524 @widgets.register() →　@widgets.register
+```
+
+```
+jupyter nbextension enable --py --sys-prefix widgetsnbextension
+jupyter nbextension enable --py --sys-prefix qgrid
+jupyter contrib nbextension install --user
+jupyter nbextensions_configurator enable --user
+```
+
+```
 python.exe -m pip install numpy
 python.exe -m pip install pandas
 python.exe -m pip install pysimplegui
@@ -24,11 +46,11 @@ python.exe -m pip install pyperclip
 python.exe -m pip install openpyxl
 python.exe -m pip install xlwings
 python.exe -m pip install pendulum
-python.exe -m pip install jupytext
 python.exe -m pip install nicegui
 python.exe -m pip install justpy
 python.exe -m pip install zeep
 python.exe -m pip install xmltodict
+
 ```
 
 ```
@@ -43,22 +65,18 @@ python.exe -m pip uninstall jedi
 
 ```
 
-python.exe -m pip pip install jupyterlab-language-pack-ja-JP
+
 
 jupyter labextension install @jupyterlab/toc
-
 jupyter labextension install @jupyterlab/git
-python.exe -m pip install jupyterlab-git
 jupyter serverextension enable --py jupyterlab_git
-
-python.exe -m pip install ipywidgets
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter nbextension enable --py --sys-prefix widgetsnbextension
 
 ```
 
-
 ### Tkinter
+
 [参考](https://tanakatarou.tech/345/)
 
 1. 必要ファイルをPython embeddable の中にコピーする
@@ -70,6 +88,7 @@ jupyter nbextension enable --py --sys-prefix widgetsnbextension
     5．DLLs/_tkinter.pyd　（ファイル）
 
 ### 必要に応じて
+
 ```
 python.exe -m pip install beautiflsoup4
 python.exe -m pip install matplotlib
@@ -88,7 +107,6 @@ python.exe -m pip install PyMuPDF
 python.exe -m pip install cufflinks
 ```
 
-
 ## nodejs
 
 `https://nodejs.org/ja/download/`からバイナリを落として解凍し、setenv.batに合わせて配置
@@ -105,4 +123,5 @@ jupyter kernelspec list
 
 1. dotnet.7zを解凍して、pythonの中に配置
 1. setenv.batのpathにdotnet interactiveのexeのパスを通す
+   `%DP0%\.dotnet\tools;`
 1. dotnet interactiveのコマンドでkernelを追加
