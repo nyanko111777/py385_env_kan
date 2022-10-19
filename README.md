@@ -27,8 +27,16 @@ python.exe -m pip install jupyter-contrib-nbextensions
 ```
 
 ```
-\000_work\py385_env_kan\python\python-3.8.5\lib\site-packages\qgrid\grid.py:524
+cd lib\site-packages\qgrid
+open grid.py
 524 @widgets.register() →　@widgets.register
+
+cd ../jupyter_contrib_nbextensions
+code .
+ template_path →　template_paths　フォルダレベルで置換
+cd ../latex_envs
+code .
+ template_path →　template_paths　フォルダレベルで置換
 ```
 
 ```
@@ -36,75 +44,12 @@ jupyter nbextension enable --py --sys-prefix widgetsnbextension
 jupyter nbextension enable --py --sys-prefix qgrid
 jupyter contrib nbextension install --user
 jupyter nbextensions_configurator enable --user
+jupyter nbextension enable toc2/main
 ```
 
-```
-python.exe -m pip install numpy
-python.exe -m pip install pandas
-python.exe -m pip install pysimplegui
-python.exe -m pip install pyperclip
-python.exe -m pip install openpyxl
-python.exe -m pip install xlwings
-python.exe -m pip install pendulum
-python.exe -m pip install nicegui
-python.exe -m pip install justpy
-python.exe -m pip install zeep
-python.exe -m pip install xmltodict
-
-```
 
 ```
 python.exe -m pip uninstall jedi
-```
-
-### JupyterLab extention
-
-1. outside, do a jupyter lab install of all extensions of interest
-1. copy $PREFIX/share/jupyter/lab/static from the outside machine onto a shared/thumb drive
-1. inside, overwrite/create that same folder
-
-```
-
-
-
-jupyter labextension install @jupyterlab/toc
-jupyter labextension install @jupyterlab/git
-jupyter serverextension enable --py jupyterlab_git
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter nbextension enable --py --sys-prefix widgetsnbextension
-
-```
-
-### Tkinter
-
-[参考](https://tanakatarou.tech/345/)
-
-1. 必要ファイルをPython embeddable の中にコピーする
-   すでにインストールされている環境から以下をコピー。全部直下に入れる
-    1．tcl　（フォルダ）
-    2．Lib/tkinter　（フォルダ）
-    3．DLLs/tcl86t.dll　（ファイル）
-    4．DLLs/tk86t.dll　（ファイル）
-    5．DLLs/_tkinter.pyd　（ファイル）
-
-### 必要に応じて
-
-```
-python.exe -m pip install beautiflsoup4
-python.exe -m pip install matplotlib
-python.exe -m pip install japanize-matplotlib
-python.exe -m pip install seaborn
-python.exe -m pip install PyPDF2
-python.exe -m pip install docx2txt
-python.exe -m pip install python-docx
-python.exe -m pip install python-pptx
-python.exe -m pip install selenium
-python.exe -m pip install img2pdf
-python.exe -m pip install pdf2image
-python.exe -m pip install pptx2md
-python.exe -m pip install mouse
-python.exe -m pip install PyMuPDF
-python.exe -m pip install cufflinks
 ```
 
 ## nodejs
@@ -125,3 +70,78 @@ jupyter kernelspec list
 1. setenv.batのpathにdotnet interactiveのexeのパスを通す
    `%DP0%\.dotnet\tools;`
 1. dotnet interactiveのコマンドでkernelを追加
+
+```
+dotnet interactive jupyter install
+jupyter kernelspec list
+```
+
+※userprofileにできる場合があるので、その場合はuserorofileから移動すればOK
+
+### dotnetの作成
+
+オフラインで、以下を実行するとuserprofileに.dotnetができるので、これを利用する。
+```
+dotnet tool install --global Microsoft.dotnet-interactive
+```
+
+
+### JupyterLab extention
+
+必要に応じて
+
+1. outside, do a jupyter lab install of all extensions of interest
+1. copy $PREFIX/share/jupyter/lab/static from the outside machine onto a shared/thumb drive
+1. inside, overwrite/create that same folder
+
+```
+jupyter labextension install @jupyterlab/toc
+jupyter labextension install @jupyterlab/git
+jupyter serverextension enable --py jupyterlab_git
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+```
+
+### Tkinter
+
+[参考](https://tanakatarou.tech/345/)
+
+1. 必要ファイルをPython embeddable の中にコピーする
+   すでにインストールされている環境から以下をコピー。全部直下に入れる
+    1．tcl　（フォルダ）
+    2．Lib/tkinter　（フォルダ）
+    3．DLLs/tcl86t.dll　（ファイル）
+    4．DLLs/tk86t.dll　（ファイル）
+    5．DLLs/_tkinter.pyd　（ファイル）
+
+### ライブラリ　必要に応じて
+
+```
+python.exe -m pip install numpy
+python.exe -m pip install pandas
+python.exe -m pip install pysimplegui
+python.exe -m pip install pyperclip
+python.exe -m pip install openpyxl
+python.exe -m pip install xlwings
+python.exe -m pip install pendulum
+python.exe -m pip install nicegui
+python.exe -m pip install justpy
+python.exe -m pip install zeep
+python.exe -m pip install xmltodict
+python.exe -m pip install beautiflsoup4
+python.exe -m pip install matplotlib
+python.exe -m pip install japanize-matplotlib
+python.exe -m pip install seaborn
+python.exe -m pip install PyPDF2
+python.exe -m pip install docx2txt
+python.exe -m pip install python-docx
+python.exe -m pip install python-pptx
+python.exe -m pip install selenium
+python.exe -m pip install img2pdf
+python.exe -m pip install pdf2image
+python.exe -m pip install pptx2md
+python.exe -m pip install mouse
+python.exe -m pip install PyMuPDF
+python.exe -m pip install cufflinks
+```
+
+
